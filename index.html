@@ -1,4 +1,60 @@
 <!DOCTYPE HTML>
+<html>
+<head>
+    <title>Number Guessing Game</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Number Guessing Game</h1>
+    <p>1から100までの数字を当ててください！</p>
+    <input type="number" id="guess" min="1" max="100" />
+    <button class="button" onclick="checkGuess()">推測する</button>
+    <div class="result" id="result"></div>
+    
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            attempts++;
+            let message = '';
+
+            if (userGuess < randomNumber) {
+                message = 'もっと大きい数字です。';
+            } else if (userGuess > randomNumber) {
+                message = 'もっと小さい数字です。';
+            } else {
+                message = `おめでとうございます！ ${attempts} 回で正解しました。`;
+                document.getElementById('guess').disabled = true; // ゲーム終了後、入力を無効化
+            }
+
+            document.getElementById('result').innerText = message;
+        }
+    </script>
+
+</body>
+</html>
+
+<!DOCTYPE HTML>
 <!--
 	Story by HTML5 UP
 	html5up.net | @ajlkn
